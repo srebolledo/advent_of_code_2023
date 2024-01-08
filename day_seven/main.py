@@ -1,6 +1,7 @@
 from __future__ import annotations
 import os
 from enum import Enum
+from utils.timeit import timeit
 
 from icecream import ic
 
@@ -94,7 +95,6 @@ class Hand_Pot:
             self.hand_value = self.__get_hand_value(self.hand).replace("k", "a")
             return
 
-
         ic(f"Replacements: {replacements}")
         values = []
         hand_type = HandTypes.NONE
@@ -116,6 +116,7 @@ class Hand_Pot:
         self.hand_value = self.__get_hand_value(self.hand).replace("k", "a")
 
         ic(f"Best value: {values[0]} with replacement: {best_replacement}, new value: {pre_hand_value} -> {self.hand_value}")
+
 
 pass
 
@@ -150,6 +151,7 @@ def part_one(lines):
 def by_hand_value(element: Hand_Pot) -> str:
     return element.hand_value
 
+
 def part_two(lines):
     res = 0
     hand_pots = parse_lines(lines)
@@ -164,6 +166,7 @@ def part_two(lines):
     return res
 
 
+@timeit
 def solutions():
     ic.disable()
     path = os.path.dirname(os.path.realpath(__file__))
