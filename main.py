@@ -1,11 +1,15 @@
-from day_one.main import solutions as day_one_solutions
-from day_two.main import solutions as day_two_solutions
-from day_three.main import solutions as day_three_solutions
-from day_four.main import solutions as day_four_solutions
-from day_five.main import solutions as day_five_solutions
+from day_1.main import solutions as day_one_solutions
+from day_2.main import solutions as day_two_solutions
+from day_3.main import solutions as day_three_solutions
+from day_4.main import solutions as day_four_solutions
+from day_5.main import solutions as day_five_solutions
+from day_6.main import solutions as day_six_solutions
+from day_7.main import solutions as day_seven_solutions
 
 day_one_solutions()
 day_two_solutions()
 day_three_solutions()
 day_four_solutions()
 day_five_solutions()
+day_six_solutions()
+day_seven_solutions()
