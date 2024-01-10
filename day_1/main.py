@@ -74,8 +74,10 @@ def part_two(lines):
 
 def solutions():
     path = os.path.dirname(os.path.realpath(__file__))
+    directory_name = " ".join(path.split(os.path.sep)[-1].capitalize().split("_"))
+
     lines = read_file(os.path.join(path, "input.txt"))
-    print(format_solution(1, part_one(lines), part_two(lines)))
+    print(format_solution(directory_name, part_one(lines), part_two(lines)))
 
 
 if __name__ == '__main__':

@@ -70,13 +70,14 @@ def part_two(played_games):
 
 def solutions():
     path = os.path.dirname(os.path.realpath(__file__))
+    directory_name = " ".join(path.split(os.path.sep)[-1].capitalize().split("_"))
+
     lines = read_file(os.path.join(path, "input.txt"))
     games = {}
     for line in lines:
         games[line.split(":")[0].replace("Game ", "")] = split_iterations(line.split(":")[1])
 
-    print(format_solution(2, part_one(games), part_two(games)))
-
+    print(format_solution(directory_name, part_one(games), part_two(games)))
 
 
 if __name__ == '__main__':

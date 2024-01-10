@@ -6,7 +6,7 @@ def read_file(file_path):
 def format_solution(day, part_one, part_two):
     part_one = part_one if part_one != 0 else "Not yet!"
     part_two = part_two if part_two != 0 else "Not yet!"
-    return f"Day {day}:\n\tPart One: {part_one}\n\tPart Two: {part_two}"
+    return f"{day}:\n\tPart One: {part_one}\n\tPart Two: {part_two}"
 
 class Colors:
     PURPLE = '\033[95m'

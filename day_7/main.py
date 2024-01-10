@@ -170,8 +170,10 @@ def part_two(lines):
 def solutions():
     ic.disable()
     path = os.path.dirname(os.path.realpath(__file__))
+    directory_name = " ".join(path.split(os.path.sep)[-1].capitalize().split("_"))
+
     lines = read_file(os.path.join(path, "input.txt"))
-    print(format_solution(7, part_one(lines), part_two(lines)))
+    print(format_solution(directory_name, part_one(lines), part_two(lines)))
 
 
 if __name__ == '__main__':
