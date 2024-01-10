@@ -20,6 +20,9 @@ def timeit(func):
             args_line.append(f"{', '.join(args)}")
         if len(kwargs) > 0:
             args_line.append(f"{', '.join([f'{key}={value}' for key, value in kwargs.items()])}")
+        if func.__globals__['__package__'] is not None and len(func.__globals__['__package__']) > 0:
+            function_path = func.__globals__['__package__']
+
         print(f'Function {function_path}::{func.__name__}({", ".join(args_line)}) Took {total_time:.4f} seconds')
         return result
 

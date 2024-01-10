@@ -1,3 +1,4 @@
+import day_1.main
 from day_1.main import solutions as day_one_solutions
 from day_2.main import solutions as day_two_solutions
 from day_3.main import solutions as day_three_solutions
@@ -17,7 +18,6 @@ def main():
     day_six_solutions()
     day_seven_solutions()
     day_eight_solutions()
-
 
 if __name__ == '__main__':
     main()
