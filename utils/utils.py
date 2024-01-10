@@ -6,11 +6,17 @@ def read_file(file_path):
         return f.read().split("\n")
 
 
-def run_solutions(folder_path, part_one_func, part_two_func, input_data, no_debug=True):
+def run_solutions(folder_path, part_one_func, part_two_func, input_data, no_debug_solution_one=True, no_debug_solution_two=True):
     directory_name = " ".join(folder_path.split(os.path.sep)[-1].capitalize().split("_"))
-    if no_debug:
+    if no_debug_solution_one:
         ic.disable()
-    print(format_solution(directory_name, part_one_func(input_data), part_two_func(input_data)))
+    solutions_one = part_one_func(input_data)
+    ic.enable()
+    if no_debug_solution_two:
+        ic.disable()
+    solutions_two = part_two_func(input_data)
+    ic.enable()
+    print(format_solution(directory_name, solutions_one, solutions_two))
     ic.enable()
 
 
