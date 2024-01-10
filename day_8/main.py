@@ -4,6 +4,7 @@ import math
 import os
 import re
 from utils.timeit import timeit
+from utils.utils import run_solutions
 
 from icecream import ic
 
@@ -88,10 +89,8 @@ def part_two(lines):
 @timeit
 def solutions():
     path = os.path.dirname(os.path.realpath(__file__))
-    directory_name = " ".join(path.split(os.path.sep)[-1].capitalize().split("_"))
-
     lines = read_file(os.path.join(path, "input.txt"))
-    print(format_solution(directory_name, part_one(lines), part_two(lines)))
+    run_solutions(path, part_one, part_two, lines)
 
 
 if __name__ == '__main__':

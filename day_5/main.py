@@ -4,7 +4,8 @@ import sys
 
 from icecream import ic
 
-from utils.utils import read_file, format_solution, Colors
+from utils.timeit import timeit
+from utils.utils import read_file, format_solution, Colors, run_solutions
 
 colors = Colors()
 
@@ -106,7 +107,7 @@ def get_seed_and_range(seeds: list[int]) -> list[(int, int)]:
     seed_and_range = []
     index = 0
     while index < len(seeds):
-        print(f"seeds from {seeds[index]} to {seeds[index] + seeds[index+1]}")
+        print(f"seeds from {seeds[index]} to {seeds[index] + seeds[index + 1]}")
         seed_and_range.append((seeds[index], seeds[index] + seeds[index + 1]))
         index += 2
     return seed_and_range
@@ -120,7 +121,7 @@ def part_two(lines):
     soil_map = maps[0]
     maps = maps[1:]
     max_soil = -1
-    iter = 0
+    iter_counter = 0
     for soil in range(1, 9999999999999999999):
         found_index = soil_map.get_backward_number(soil)
         for mappings in maps:
@@ -131,21 +132,19 @@ def part_two(lines):
                     print(f"found seed in range {seed_start} <= {found_index} <= {seed_end} for soil {soil}")
                     return soil
 
-        iter += 1
-        if iter > 1000000:
-            print(f"Iterations {iter}")
-            iter = 0
-
+        iter_counter += 1
+        if iter_counter > 1000000:
+            print(f"Iterations {iter_counter}")
+            iter_counter = 0
 
     return min(res)
 
 
+@timeit
 def solutions():
     path = os.path.dirname(os.path.realpath(__file__))
-    directory_name = " ".join(path.split(os.path.sep)[-1].capitalize().split("_"))
-
     lines = read_file(os.path.join(path, "input.txt"))
-    print(format_solution(directory_name, part_one(lines), part_two(lines)))
+    run_solutions(path, part_one, part_two, lines)
 
 
 if __name__ == '__main__':

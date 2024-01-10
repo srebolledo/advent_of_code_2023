@@ -3,7 +3,8 @@ import os
 
 from icecream import ic
 
-from utils.utils import read_file, format_solution, Colors
+from utils.timeit import timeit
+from utils.utils import read_file, format_solution, Colors, run_solutions
 
 colors = Colors()
 
@@ -104,13 +105,11 @@ def part_two(lines):
     return res
 
 
+@timeit
 def solutions():
     path = os.path.dirname(os.path.realpath(__file__))
-    directory_name = " ".join(path.split(os.path.sep)[-1].capitalize().split("_"))
-
     lines = read_file(os.path.join(path, "input.txt"))
-    ic.disable()
-    print(format_solution(directory_name, part_one(lines), part_two(lines)))
+    run_solutions(path, part_one, part_two, lines)
 
 
 if __name__ == '__main__':

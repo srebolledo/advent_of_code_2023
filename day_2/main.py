@@ -1,7 +1,10 @@
 import os
+from typing import Dict, Any
 
 from icecream import ic
-from utils.utils import read_file, format_solution
+
+from utils.timeit import timeit
+from utils.utils import read_file, format_solution, run_solutions
 
 rules = {
     'red': 12,
@@ -42,7 +45,15 @@ def configuration_valid(configuration: dict):
     return True
 
 
-def part_one(played_games):
+def parse_lines(lines) -> dict[str, dict[int, dict[str, int]]]:
+    games = {}
+    for line in lines:
+        games[line.split(":")[0].replace("Game ", "")] = split_iterations(line.split(":")[1])
+    return games
+
+
+def part_one(lines):
+    played_games = parse_lines(lines)
     res = 0
     for key, game in played_games.items():
         ic(f"{key} -> {game} ({len(game)})")
@@ -51,7 +62,8 @@ def part_one(played_games):
     return res
 
 
-def part_two(played_games):
+def part_two(lines):
+    played_games = parse_lines(lines)
     res = 0
     for key, game in played_games.items():
         ic(f"{key} -> {game} ({len(game)})")
@@ -68,16 +80,11 @@ def part_two(played_games):
     return res
 
 
+@timeit
 def solutions():
     path = os.path.dirname(os.path.realpath(__file__))
-    directory_name = " ".join(path.split(os.path.sep)[-1].capitalize().split("_"))
-
     lines = read_file(os.path.join(path, "input.txt"))
-    games = {}
-    for line in lines:
-        games[line.split(":")[0].replace("Game ", "")] = split_iterations(line.split(":")[1])
-
-    print(format_solution(directory_name, part_one(games), part_two(games)))
+    run_solutions(path, part_one, part_two, lines)
 
 
 if __name__ == '__main__':
